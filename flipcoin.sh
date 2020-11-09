@@ -1,7 +1,8 @@
 #!/bin/bash -x
 tails=0;
 heads=0;
-while [ $tails -lt 21 -a $heads -lt 21 ]
+minDiference=0;
+while [ $tails -lt 21 -a $heads -lt 21 ] && [ $minDifference -lt 2 ];
 do
 toss=$((RANDOM%2))
 if [ $toss -eq 0 ]
@@ -12,6 +13,7 @@ else
     heads=$(($heads+1))
     echo heads
 fi
+minDifference=$(( $heads-$tails ))
 done
 echo "no of times head won:$heads"
 echo "no of times tails won: $tails"
